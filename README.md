@@ -40,3 +40,6 @@ menu pricipal
 *7.1. Status Voos
 *7.2. Status Astronautas
 
+** em 8.Rest in peace" é possível encontrar os astronautas que morreram exercendo a profissão. 
+
+obs: os astronautas continuam na lista de passageiros dos outros voos que estiver mesmo após a morte, e para o lançamento é necessário a remoção deles do voo
