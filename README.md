@@ -3,6 +3,7 @@ Diretório com o código da atividade 01 de lp1
 
 Makefile: 
     abra o diretório onde se encontra todos os códigos, execute o comando 'make'. após isso, será criado um executável chamado prog, basta rodar ele, digitando './prog'. após isso aproveite o sistema!!
+    execute 'make clean' para limpar os arquivos gerados na compilação
 
     obs: ' ' <- indicam o que deve ser digitado no terminal 
 
