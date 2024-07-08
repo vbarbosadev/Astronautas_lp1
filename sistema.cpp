@@ -89,7 +89,7 @@ void Sistema::menuPrincipal() {
             case 6:
                 cout << "\033[2J\033[1;1H";
                 cout << "\n### Listar Astronautas ###" << endl;
-                listarAstronautas();
+                listarAstronautasComVoos();
                 getchar();
                 cout << "\nPressione enter para sair....";
                 getchar();
@@ -102,8 +102,9 @@ void Sistema::menuPrincipal() {
                 cout << "\033[2J\033[1;1H";
                 listarMortos();
                 break;
-            case 9:cout << "\033[2J\033[1;1H";
-                cout << "Saindo..." << endl;
+            case 9:
+                cout << "\033[2J\033[1;1H";
+                sair();
                 break;
             default:
                 cout << "Opção inválida! Tente novamente." << endl;
@@ -215,6 +216,13 @@ void Sistema::adicionarAstronautaEmVoo() {
             return;
         }
         if (astronauta) {
+            if(!astronauta->vivo){
+                cout << "Não é possivel adicioanr um astronauta que está morto a um voo" << endl;
+                getchar();
+                cout << "\nPressione enter para sair....";
+                getchar();
+                return;
+            }
             voo->adicionarAstronauta(astronauta);
             cout << "Astronauta adicionado ao voo!" << endl;
             getchar();
@@ -242,7 +250,7 @@ void Sistema::removerAstronautaDeVoo() {
     cout << "\n### Remover Astronauta de Voo ###" << endl;
     cout << "\nVoos disponíveis: " << endl;
     listarVoosSimples();
-    cout << "Digite o código do voo: ";
+    cout << endl << "Digite o código do voo: ";
     cin >> codigo;
 
     Voo* voo = encontrarVoo(codigo);
@@ -362,7 +370,28 @@ void Sistema::listarVoos() {
 
 void Sistema::listarVoosSimples() {
     for (const auto& voo : voos) {
-        cout << "Voo: " << voo->codigo << "\t";
+        if(voo->status == "planejado"){
+            cout << "Voo: " << voo->codigo << "\t";
+        }
+        
+    }
+}
+
+void Sistema::listarVoosSimplesEmCurso() {
+    for (const auto& voo : voos) {
+        if(voo->status == "em curso"){
+            cout << "Voo: " << voo->codigo << "\t";
+        }
+        
+    }
+}
+
+void Sistema::listarVoosSimplesComAstronautas() {
+    for (const auto& voo : voos) {
+        if(voo->passageiros.size() > 0 && voo->status == "planejado"){
+            cout << "Voo: " << voo->codigo << "\t";
+        }
+        
     }
 }
 
@@ -386,6 +415,27 @@ void Sistema::listarAstronautas() {
         if (!astronauta->vivo) {
             cout << " (Morto)";
         }
+        cout << endl;
+    }
+    
+}
+
+void Sistema::listarAstronautasComVoos() {
+    
+    for (auto astronauta : astronautas) {
+        cout << "Nome: " << astronauta->nome << ", CPF: " << astronauta->cpf << ", Idade: " << astronauta->idade;
+        if (!astronauta->vivo) {
+            cout << " (Morto)";
+        }
+        cout << endl << "Voos participados:" << endl;
+            for (auto voo : voos) {
+                for (auto pass : voo->passageiros) {
+                    if (pass->cpf == astronauta->cpf) {
+                        cout << "  Código do voo: " << voo->codigo << endl;
+                    }
+                }
+            }
+            cout << endl;
         cout << endl;
     }
     
@@ -478,8 +528,8 @@ void Sistema::lancarVoo() {
     cout << "\033[2J\033[1;1H";
     cout << "\n### Lançar Voo ###" << endl;
     cout << endl <<  "Voos: \n";
-    listarVoosSimples();
-    cout << "\nDigite o código do voo a ser lançado: ";
+    listarVoosSimplesComAstronautas();
+    cout << endl << "\nDigite o código do voo a ser lançado: ";
     cin >> codigo;
 
     Voo* voo = encontrarVoo(codigo);
@@ -533,7 +583,7 @@ void Sistema::explodirVoo() {
     cout << "\033[2J\033[1;1H";
     cout << "\n### Explodir Voo ###" << endl;
     cout << "\nVoos: \n";
-    listarVoosSimples();
+    listarVoosSimplesEmCurso();
     cout << "\n\nDigite o código do voo a ser explodido: ";
     cin >> codigo;
 
@@ -569,7 +619,7 @@ void Sistema::finalizarVoo() {
     string sucesso;
     cout << "\n### Finalizar Voo ###" << endl;
     cout << "\nVoos: \n";
-    listarVoosSimples();
+    listarVoosSimplesEmCurso();
     cout << "\nDigite o código do voo a ser finalizado: ";
     cin >> codigo;
 
@@ -614,4 +664,12 @@ Voo* Sistema::encontrarVoo(int codigo) {
         }
     }
     return nullptr;
+}
+
+void Sistema::sair(){
+    cout << "\n\nObrigado por executar o programa!!!" << endl;
+    getchar();
+    cout << "\n\n\n\n\n\nda 10 ae professor :/" << endl;
+    getchar();
+
 }

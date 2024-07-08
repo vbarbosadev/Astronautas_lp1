@@ -34,8 +34,11 @@ public:
     void gerenciarVoos();
     void listarVoos();
     void listarVoosSimples();
+    void listarVoosSimplesEmCurso();
+    void listarVoosSimplesComAstronautas();
     void listarAstronautasDeVoo(int codigoVoo);
     void listarAstronautas();
+    void listarAstronautasComVoos();
     void status();
     void statusVoos();
     void statusAstronautas();
@@ -43,6 +46,7 @@ public:
     void lancarVoo();
     void explodirVoo();
     void finalizarVoo();
+    void sair();
 
 private:
     Astronauta* encontrarAstronauta(string cpf);

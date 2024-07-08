@@ -3,9 +3,9 @@
 Voo::Voo(int codigo) : codigo(codigo), status("planejado") {}
 
 void Voo::adicionarAstronauta(Astronauta* astronauta) {
-    if (status == "planejado" &astronauta->disponivel &astronauta->vivo) {
+    if (status == "planejado" && astronauta->vivo) {
         passageiros.push_back(astronauta);
-        astronauta->disponivel = true;
+        
     }
 }
 
@@ -13,7 +13,7 @@ void Voo::removerAstronauta(string cpf) {
     if (status == "planejado") {
         for (auto it = passageiros.begin(); it != passageiros.end(); ++it) {
             if ((*it)->cpf == cpf) {
-                (*it)->disponivel = true;
+                
                 passageiros.erase(it);
                 break;
             }
@@ -31,7 +31,7 @@ bool Voo::astronautaJaNoVoo(const string &cpf) {
 }
 
 void Voo::lancarVoo() {
-    if (status == "planejado" &!passageiros.empty() &todosAstronautasDisponiveis()) {
+    if (status == "planejado" && !passageiros.empty() && todosAstronautasDisponiveis()) {
         status = "Em curso";
         cout << "Voo lançado com sucesso!" << endl;
     } else {
