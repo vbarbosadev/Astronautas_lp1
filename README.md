@@ -27,16 +27,16 @@ menu pricipal
 
 ** menu de editar voos:
 ** aqui você pode adicionar e remover astronautas de um voo caso seja possível, existem exceções, como por exemplo, adicionar ou remover umn astronauta em um voo que já foi lançado.
-3.1. Adicionar Astronauta em Voo 
-3.2. Remover Astronauta de Voo
+*3.1. Adicionar Astronauta em Voo 
+*3.2. Remover Astronauta de Voo
 
 ** menu de gerenciamento de voo
 ** aqui voce pode lançar, explodir e finalizar um voo, com exceções como a que impossibilita o lançamento de um voo que o astronauta não esteja disponível
-4.1. Lançar Voo
-4.2. Explodir Voo
-4.3. Finalizar Voo
+*4.1. Lançar Voo
+*4.2. Explodir Voo
+*4.3. Finalizar Voo
 
 ** aqui é possível ver os status de voos e de astronautas, como está o estado (se em curso ou finalizado), se o astronauta está disponível e vivo
-7.1. Status Voos
-7.2. Status Astronautas
+*7.1. Status Voos
+*7.2. Status Astronautas
 
